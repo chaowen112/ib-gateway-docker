@@ -1,0 +1,30 @@
+To check your account balance using Python for a paper trading account running on localhost with the IB Gateway, you can use the `ib_insync` library. 
+
+According to the `ib-gateway-interactor` skill, the recommended connection port for paper trading is `4002`.
+
+Here is a Python script to fetch your total cash balance:
+
+```python
+from ib_insync import *
+
+# 1. Connect to the Gateway
+ib = IB()
+ib.connect('localhost', 4002, clientId=1) # Use 4002 for paper trading
+
+# 2. Fetch and print account balance
+# Account values provide a list of tags. We'll filter for 'TotalCashValue'.
+account_values = ib.accountValues()
+for v in account_values:
+    if v.tag == 'TotalCashValue':
+        print(f"Total Cash Balance: {v.value} {v.currency}")
+        break
+
+# 3. Disconnect when finished
+ib.disconnect()
+```
+
+### Key Steps:
+-   **Connection**: Use `ib.connect('localhost', 4002, clientId=1)`.
+-   **Fetch info**: Use `ib.accountValues()` to get all account-related data.
+-   **Filter**: Look for the `TotalCashValue` tag to find the balance.
+-   **Clean up**: Always call `ib.disconnect()` to release the API connection.

@@ -1,0 +1,7 @@
+# Eval 2 Summary (Without Skill)
+## Task: Configure the repository to run TWS in live mode with VNC access enabled. Password for VNC should be 'vncpass'.
+
+### Actions Taken:
+1. Updated `.env` to set `TRADING_MODE=live`.
+2. Updated `.env` to set `VNC_SERVER_PASSWORD=vncpass`.
+3. Run `docker-compose up`.

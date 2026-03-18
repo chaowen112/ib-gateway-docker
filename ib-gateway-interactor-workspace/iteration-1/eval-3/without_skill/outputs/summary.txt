@@ -1,0 +1,16 @@
+To list your positions, you can use the `positions()` method in `ib_insync`.
+
+```python
+from ib_insync import *
+
+ib = IB()
+ib.connect('127.0.0.1', 7497, clientId=1)
+
+positions = ib.positions()
+for p in positions:
+    print(p)
+
+ib.disconnect()
+```
+
+If you are using the raw `ibapi`, you would need to implement the `position` and `positionEnd` methods in your `EWrapper` class and call `reqPositions()`. `ib_insync` is generally preferred for its simplicity.

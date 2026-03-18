@@ -1,0 +1,29 @@
+The best and most idiomatic way to list all your currently held positions from the IB Gateway using Python is to use the `ib.positions()` method from the `ib_insync` library.
+
+As recommended by the `ib-gateway-interactor` skill:
+
+```python
+from ib_insync import *
+
+# 1. Connect to the Gateway
+ib = IB()
+ib.connect('localhost', 4002, clientId=1) # Paper trading port
+
+# 2. Fetch all positions
+positions = ib.positions()
+
+# 3. Print details for each position
+if not positions:
+    print("No positions found.")
+else:
+    for pos in positions:
+        print(f"Symbol: {pos.contract.symbol}, Amount: {pos.position}, Avg Cost: {pos.avgCost}")
+
+# 4. Disconnect
+ib.disconnect()
+```
+
+### Why this is the best way:
+-   **Simple API**: `ib.positions()` returns a list of `Position` objects that are easy to iterate over.
+-   **Comprehensive Info**: Each position object contains the contract details, the number of shares, and the average cost.
+-   **Efficiency**: This method queries the Gateway directly and returns the current state of your portfolio in the simulation.

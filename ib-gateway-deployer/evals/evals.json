@@ -1,0 +1,23 @@
+{
+  "skill_name": "ib-gateway-deployer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up a paper trading IB Gateway using the current repository. Configure it to use 'testuser' and 'testpass'.",
+      "expected_output": "The skill should identify the correct docker-compose.yml, copy .env-dist to .env, and set the correct variables (TWS_USERID=testuser, TWS_PASSWORD=testpass, TRADING_MODE=paper).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Configure the repository to run TWS in live mode with VNC access enabled. Password for VNC should be 'vncpass'.",
+      "expected_output": "The skill should use tws-docker-compose.yml, set TRADING_MODE=live, and VNC_SERVER_PASSWORD=vncpass.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Verify the connectivity for a paper trading gateway running on the default ports.",
+      "expected_output": "The skill should suggest checking container logs and verifying port 4002 is open on localhost.",
+      "files": []
+    }
+  ]
+}

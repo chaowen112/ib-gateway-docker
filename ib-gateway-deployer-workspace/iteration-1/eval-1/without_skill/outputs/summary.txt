@@ -1,0 +1,8 @@
+# Eval 1 Summary (Without Skill)
+## Task: Set up a paper trading IB Gateway using the current repository. Configure it to use 'testuser' and 'testpass'.
+
+### Actions Taken:
+1. Copied `.env-dist` to `.env`.
+2. Set `TWS_USERID=testuser` and `TWS_PASSWORD=testpass`.
+3. Set `TRADING_MODE=paper`.
+4. Run `docker-compose up`.

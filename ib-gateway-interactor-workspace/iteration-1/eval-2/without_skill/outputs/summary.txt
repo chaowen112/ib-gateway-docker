@@ -1,0 +1,19 @@
+You can use the `ib_insync` library to place a market order. Here is a simple example for MSFT:
+
+```python
+from ib_insync import *
+
+ib = IB()
+ib.connect('127.0.0.1', 7497, clientId=1) # Using default TWS paper port
+
+contract = Stock('MSFT', 'SMART', 'USD')
+ib.qualifyContracts(contract)
+
+order = MarketOrder('BUY', 5)
+trade = ib.placeOrder(contract, order)
+
+print(trade)
+ib.disconnect()
+```
+
+Remember that for paper trading, you must ensure your TWS or IB Gateway is logged into a paper account and configured to accept API connections on the specified port.

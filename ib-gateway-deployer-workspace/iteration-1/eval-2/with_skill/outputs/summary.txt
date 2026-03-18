@@ -1,0 +1,11 @@
+# Eval 2 Summary (With Skill)
+## Task: Configure the repository to run TWS in live mode with VNC access enabled. Password for VNC should be 'vncpass'.
+
+### Actions Taken:
+1. Identified `tws-docker-compose.yml` as the correct file for TWS (GUI-based).
+2. Created `.env` file with the following key configurations:
+   - `TRADING_MODE=live`
+   - `VNC_SERVER_PASSWORD=vncpass`
+   - `TWS_SETTINGS_PATH=/config/tws_settings` (as recommended for TWS in `SKILL.md`)
+3. Recommended command: `docker compose -f tws-docker-compose.yml up -d`
+4. Mentioned that VNC access is enabled by default in TWS images.

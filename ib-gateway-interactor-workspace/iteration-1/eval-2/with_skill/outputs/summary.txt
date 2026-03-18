@@ -1,0 +1,31 @@
+To place a market buy order for 5 shares of MSFT in the paper trading simulation, you can use the `ib_insync` library following these steps from the `ib-gateway-interactor` skill:
+
+```python
+from ib_insync import *
+
+# 1. Connect to the Gateway (Paper trading uses port 4002)
+ib = IB()
+ib.connect('localhost', 4002, clientId=1)
+
+# 2. Define the MSFT Stock Contract
+contract = Stock('MSFT', 'SMART', 'USD')
+ib.qualifyContracts(contract) # Ensure the contract is fully specified
+
+# 3. Place a Market Order for 5 shares
+order = MarketOrder('BUY', 5)
+trade = ib.placeOrder(contract, order)
+
+# 4. Wait for the order to complete (optional, but good for confirmation)
+while not trade.isDone():
+    ib.sleep(1)
+
+print(f"Order for 5 shares of MSFT placed. Status: {trade.orderStatus.status}")
+
+# 5. Disconnect
+ib.disconnect()
+```
+
+### Best Practices:
+-   **Port 4002**: This is the default port for paper trading in the IB Gateway Docker setup.
+-   **qualifyContracts**: This step fills in missing contract details (like conId) to prevent order rejection.
+-   **ib.sleep(1)**: Use this instead of `time.sleep` to allow the library's event loop to process updates from the Gateway.

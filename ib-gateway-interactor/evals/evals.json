@@ -1,0 +1,23 @@
+{
+  "skill_name": "ib-gateway-interactor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "How do I check my account balance using Python for a paper trading account running on localhost?",
+      "expected_output": "The skill should provide code that connects to localhost:4002 and fetches account balance using ib_insync.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Show me how to place a market buy order for 5 shares of MSFT in the paper trading simulation.",
+      "expected_output": "The skill should provide a code snippet using ib_insync that connects to port 4002 and places a MarketOrder for MSFT.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "What's the best way to list all my currently held positions from the IB Gateway?",
+      "expected_output": "The skill should suggest using the ib.positions() method with the correct port and clientId.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+To check your account balance for a paper trading account on Interactive Brokers using Python, you typically use the `ibapi` (official) or `ib_insync` (easier to use) library.
+
+If you are using `ib_insync`:
+
+```python
+from ib_insync import *
+
+ib = IB()
+# Standard paper trading port is 7497 for TWS or 4002 for IB Gateway
+ib.connect('127.0.0.1', 4002, clientId=1)
+
+# Get all account values
+for v in ib.accountValues():
+    if v.tag == 'NetLiquidation':
+        print(f'Net Liquidation Value: {v.value}')
+
+ib.disconnect()
+```
+
+If you are using the official `ibapi`:
+
+```python
+from ibapi.client import EClient
+from ibapi.wrapper import EWrapper
+
+class TestApp(EWrapper, EClient):
+    def __init__(self):
+        EClient.__init__(self, self)
+
+    def accountSummary(self, reqId, account, tag, value, currency):
+        print(f"AccountSummary. ReqId: {reqId}, Account: {account}, Tag: {tag}, Value: {value}, Currency: {currency}")
+
+app = TestApp()
+app.connect("127.0.0.1", 4002, 1)
+app.run()
+```
+
+Make sure your IB Gateway or TWS is running and the "Enable ActiveX and Socket Clients" option is checked in the settings.
